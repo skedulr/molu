@@ -91,8 +91,8 @@ def setup():
 @app.route('/mail', methods=['POST'])
 def makeAndMailICS():
     ical = makeICS(request.json["summary"],
-                   datetime.fromisoformat(request.json["start_date"][:-1]),
-                   datetime.fromisoformat(request.json["end_date"][:-1]), request.json["author"],
+                   datetime.fromisoformat(request.json["start_date"]),
+                   datetime.fromisoformat(request.json["end_date"]), request.json["author"],
                    request.json["location"], request.json["attendees"])
 
     mailICS(request.json["summary"], list(map(lambda x: x['email'], request.json["attendees"])), ical)
